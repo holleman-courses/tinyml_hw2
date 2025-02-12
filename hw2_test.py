@@ -34,9 +34,9 @@ test_images  = test_images  / 255.0
   
 try:
   model50k = tf.keras.models.load_model("best_model.h5")
-  model50k.compile(optimizer=tf.keras.optimizers.legacy.Adam(),
-              loss='mean_squared_error'
-             )
+  model50k.compile(optimizer='adam',
+                   loss=tf.keras.losses.SparseCategoricalCrossentropy(from_logits=True),
+                   metrics=['accuracy'])
 except:
   print("Failure loading best_model.h5")
 print("Model50k loaded")
